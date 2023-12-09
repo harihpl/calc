@@ -1,0 +1,71 @@
+<form [formGroup]="userForm"> 
+<h2 style="text-align: center;">{{title}}</h2>
+<br>
+<!-- <div class="formGroup"> -->
+    <div class="row">
+        <div class="col-lg-4"></div>
+     <div class="col-lg-4" style="background-color:burlywood">
+    <br>
+    <label>User name</label><br>
+    <input type="text" name="username" formControlName="username" id="username">
+    <div *ngIf="username?.invalid && (submitted || username?.touched)">
+        <span class="error" *ngIf="username?.errors?.['required']">Enter username</span>
+        <span class="error" *ngIf="username?.errors?.['minlength']">enter minimum 10 char</span>
+    </div>
+    <br>
+    <br>
+    <label>Email</label><br>
+    <input type="email" name="email" formControlName="email" id="email">
+    <div *ngIf="email?.invalid && (submitted || email?.touched)">
+        <span class="error" *ngIf="email?.errors?.['required']">Enter email</span>
+        <span class="error" *ngIf="email?.errors?.['email']">Enter valid email</span>
+     </div>
+    <br><br>
+    <div class="row">
+        <div class="col-6">
+            <label>Choose Gender : </label><br>
+            <label for="male">Male</label><br>
+            <input type="radio" name="gender" formControlName="gender" id="male" value="male"><br>
+            <label for="female">Female</label><br>
+            <input type="radio" name="gender" formControlName="gender" id="female" value="female"><br>
+            <div *ngIf="gender.invalid && (submitted || gender?.touched)">
+                <span class="error" *ngIf="gender?.errors?.['required']">Choose Gender</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <label > Choose U r Skills:</label><br>
+            <br>
+            <label for="frontend">FrontEnd</label>&nbsp;
+            <input type="checkbox" class="form-check-input" formControlname="skills" id="development"><br>
+            <br>
+            <label for="backend">BackEnd</label> &nbsp;
+            <input type="checkbox" class="form-check-input" formControlName="skills" id="development"><br>
+            <br>
+            <label for="FullStack">FullStack</label>&nbsp;
+            <input type="checkbox" class="form-check-input" formControlName="skills" id="development"><br>
+            <div *ngIf="skills.invalid && (submitted || skills.touched)">
+                <span class="error" *ngIf="skills.errors?.['required']">Choose Skills</span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <label for="pwd">Password</label><br>
+    <input type="text" formControlName="pwd" id="pwd" name="pwd"><br><br>
+    <div *ngIf="pwd.invalid && (submitted || pwd?.touched)">
+        <span class="error" *ngIf="pwd?.errors?.['required']">Enter password</span>
+        <span class="error" *ngIf="pwd?.errors?.['minlength']">Password must be at least 10 characters</span>
+        <span class="error" *ngIf="pwd?.errors?.['pattern']">Enter valid pwd</span>
+    </div>
+    <label for="cpwd" >Confirm Password:</label><br>
+    <input type="text" formControlName="cpwd" id="cpwd" name="cpwd">
+    <div *ngIf="cpwd?.invalid && (submitted ||  cpwd?.touched)">
+   <span class="error" *ngIf="cpwd?.errors?.['required']">Enter password</span></div>
+   <span class="error" *ngIf="this.userForm.controls['pwd'].value !=  this.userForm.controls['cpwd'].value">password mismatch</span>
+<br>
+<br> 
+    <button type="submit" (click)="submit()" class="btn btn-success">Submit</button><br>
+    <br>
+    </div>
+</div>
+<!-- </div> -->
+</form>
